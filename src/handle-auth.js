@@ -3,7 +3,7 @@ import {
   createKindeServerClient,
   validateClientSecret,
 } from "@kinde-oss/kinde-typescript-sdk";
-import { json, redirect } from "@remix-run/node";
+import { data, redirect } from "react-router";
 import { config } from "./config";
 import { createSessionManager } from "./session/session";
 import { generateCookieHeader } from "./utils/cookies";
@@ -73,7 +73,7 @@ export const handleAuth = async (request, route, options) => {
   };
 
   const health = async () => {
-    return json({
+    return data({
       siteUrl: config.siteUrl,
       issuerURL: config.issuerURL,
       clientID: config.clientId,
@@ -101,7 +101,7 @@ export const handleAuth = async (request, route, options) => {
     const postLoginRedirectURL = postLoginRedirectURLFromMemory
       ? postLoginRedirectURLFromMemory
       : config.postLoginRedirectUrl ||
-        "Set your post login redirect URL in your environment variables.";
+      "Set your post login redirect URL in your environment variables.";
     const headers = generateCookieHeader(request, cookies);
 
     const user = await kindeClient.getUser(sessionManager);
