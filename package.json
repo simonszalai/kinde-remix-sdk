@@ -1,6 +1,6 @@
 {
-  "name": "@kinde-oss/kinde-remix-sdk",
-  "version": "1.1.3",
+  "name": "@simonszalai/kinde-react-router-sdk",
+  "version": "1.1.5",
   "description": "",
   "main": "dist/cjs/index.js",
   "module": "dist/index.js",
@@ -25,8 +25,10 @@
     }
   },
   "scripts": {
-    "build": "npx tsc && cp src/types.d.ts dist/types/types.d.ts && genversion --es6 src/utils/version.js && npx rollup --c",
-    "release": "release-it",
+    "build": "./node_modules/.bin/tsc && cp src/types.d.ts dist/types/types.d.ts && genversion --es6 src/utils/version.js && npx rollup --c",
+    "prepublishOnly": "npm run build",
+    "prepare": "npm run build",
+    "release": "npm run build && release-it",
     "test": "vitest",
     "test:coverage": "vitest --coverage",
     "dev:prepare": "rm -rf playground && git clone https://github.com/kinde-starter-kits/kinde-auth-remix-starter-kit.git playground && npm link && cd playground && mv .env.sample .env && npm uninstall @kinde-oss/kinde-remix-sdk && rm -rf .git && npm link @kinde-oss/kinde-remix-sdk",
@@ -34,17 +36,9 @@
     "lint": "eslint ./src --ext .ts --fix && prettier --write ."
   },
   "author": {
-    "name": "Kinde",
-    "email": "engineering@kinde.com",
-    "url": "https://kinde.com"
+    "name": "Simon Szalai"
   },
   "license": "ISC",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/kinde-oss/kinde-remix-sdk"
-  },
-  "bugs": "https://github.com/kinde-oss/kinde-remix-sdk",
-  "homepage": "https://kinde.com",
   "dependencies": {
     "@kinde-oss/kinde-typescript-sdk": "^2.9.1",
     "cookie": "^1.0.2",
@@ -69,5 +63,11 @@
     "rollup": "^4.34.7",
     "typescript": "^5.7",
     "vitest": "^3.0.6"
-  }
+  },
+  "files": [
+    "dist",
+    "src",
+    "README.md",
+    "LICENSE"
+  ]
 }

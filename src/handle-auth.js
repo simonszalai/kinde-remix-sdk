@@ -101,7 +101,7 @@ export const handleAuth = async (request, route, options) => {
     const postLoginRedirectURL = postLoginRedirectURLFromMemory
       ? postLoginRedirectURLFromMemory
       : config.postLoginRedirectUrl ||
-      "Set your post login redirect URL in your environment variables.";
+        "Set your post login redirect URL in your environment variables.";
     const headers = generateCookieHeader(request, cookies);
 
     const user = await kindeClient.getUser(sessionManager);
