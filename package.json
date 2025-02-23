@@ -1,6 +1,6 @@
 {
   "name": "@simonszalai/kinde-react-router-sdk",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "",
   "main": "dist/cjs/index.js",
   "module": "dist/index.js",
